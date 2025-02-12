@@ -7,10 +7,12 @@ import br.com.bagarote.model.Empresa;
 import br.com.bagarote.repository.ClienteRepository;
 import br.com.bagarote.repository.EmpresaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 @AllArgsConstructor
 public class EmpresaService {
 

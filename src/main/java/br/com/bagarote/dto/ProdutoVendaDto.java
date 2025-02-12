@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProdutoVendaDto {
+public class    ProdutoVendaDto {
     public Long idProduto;
     private int quantidade;
 }

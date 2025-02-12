@@ -1,5 +1,6 @@
 package br.com.bagarote.controller;
 
+import br.com.bagarote.service.ClienteService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ import lombok.AllArgsConstructor;
 public class ClienteController {
 	
 	private final ClienteRepository clienteRepository;
-	
+	private final ClienteService clienteService;
+
+	//lista os clientes
 	@GetMapping("cliente")
 	public ResponseEntity<?> getAll() {
-	    return ResponseEntity.ok().body(clienteRepository.findAll());
+	    return ResponseEntity.ok().body(clienteService.getClientes());
     }
 	@GetMapping("cliente/{idCliente}")
 	public ResponseEntity<?> getByIdCliente(@PathVariable Long idCliente) {

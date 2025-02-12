@@ -1,6 +1,7 @@
 package br.com.bagarote.dto;
 
 import br.com.bagarote.model.MetodoPagamento;
+import br.com.bagarote.model.Produto;
 import br.com.bagarote.model.Venda;
 import br.com.bagarote.model.VendaProduto;
 import lombok.Getter;
@@ -8,11 +9,12 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class VendaDto {
+public class VendaDetalheDto {
     private Long idVenda;
     private Long idEmpresa;
     private String nomeFantasia;
@@ -24,9 +26,9 @@ public class VendaDto {
     private BigDecimal valorDesconto;
     private BigDecimal valorAcrescimo;
     private BigDecimal valorPago;
-    private List<VendaProduto> produtoList;
+    private List<VendaProduto> produtos;
 
-    public VendaDto(Venda venda){
+    public VendaDetalheDto(Venda venda){
         this.idVenda = venda.getIdVenda();
         this.idEmpresa = venda.getEmpresa().getIdEmpresa();
         this.nomeFantasia = venda.getEmpresa().getNomeFantasia();
@@ -38,6 +40,7 @@ public class VendaDto {
         this.valorAcrescimo = venda.getValorAcrescimo();
         this.valorTotal = venda.getValorTotal();
         this.valorPago = venda.getValorPago();
-        this.produtoList = venda.getProdutos();
+        this.produtos = venda.getProdutos();
+
     }
 }
