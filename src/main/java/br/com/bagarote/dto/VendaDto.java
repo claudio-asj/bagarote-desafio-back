@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -24,7 +25,7 @@ public class VendaDto {
     private BigDecimal valorDesconto;
     private BigDecimal valorAcrescimo;
     private BigDecimal valorPago;
-    private List<VendaProduto> produtoList;
+    private List<VendaProdutoDto> produtoList;
 
     public VendaDto(Venda venda){
         this.idVenda = venda.getIdVenda();
@@ -38,6 +39,11 @@ public class VendaDto {
         this.valorAcrescimo = venda.getValorAcrescimo();
         this.valorTotal = venda.getValorTotal();
         this.valorPago = venda.getValorPago();
-        this.produtoList = venda.getProdutos();
+        List<VendaProdutoDto> produtoDtos = new ArrayList<>();
+        venda.getProdutos().forEach(vendaProduto -> {
+            produtoDtos.add(new VendaProdutoDto(vendaProduto));
+        });
+
+        this.produtoList = produtoDtos;
     }
 }

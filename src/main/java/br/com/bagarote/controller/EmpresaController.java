@@ -2,6 +2,7 @@ package br.com.bagarote.controller;
 
 import br.com.bagarote.repository.ProdutoRepository;
 import br.com.bagarote.service.EmpresaService;
+import br.com.bagarote.service.ProdutoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ public class EmpresaController {
 	private final EmpresaRepository empresaRepository;
 	private final EmpresaService empresaService;
 	private final ProdutoRepository produtoRepository;
+	private final ProdutoService produtoService;
 
 	//lista das empresas
 	@GetMapping("empresa")
@@ -56,6 +58,6 @@ public class EmpresaController {
 	//lista todos os produtos de uma empresa
 	@GetMapping("empresa/{idEmpresa}/produtos")
 	public ResponseEntity<?> getProdutosByEmpresa(@PathVariable Long idEmpresa){
-		return ResponseEntity.ok().body(produtoRepository.findByEmpresaIdEmpresa(idEmpresa));
+		return ResponseEntity.ok().body(produtoService.getProductByIdEmpresa(idEmpresa));
 	}
 }

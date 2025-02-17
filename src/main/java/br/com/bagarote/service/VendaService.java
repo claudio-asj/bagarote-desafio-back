@@ -53,6 +53,9 @@ public class VendaService {
         venda.setMetodoPagamento(vendaForm.getMetodoPagamento());
         venda.setDataVenda(vendaForm.getDataVenda());
 
+        //List<Produto> produtos = new ArrayList<>();
+        //List<VendaProduto> produtos = new ArrayList<>();
+
         // Validar se a empresa existe
         Empresa empresa = empresaRepository.findById(vendaForm.getIdEmpresa()).orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
         venda.setEmpresa(empresa);
@@ -85,8 +88,21 @@ public class VendaService {
 //            System.out.println(produto.getValorBase());
 
             venda.setValorTotal(venda.getValorTotal().add(valor));
-        });
+            if(venda.getProdutos() == null){
+                venda.setProdutos(new ArrayList<>());
+            }
 
+            VendaProduto vendaProduto = new VendaProduto();
+            VendaProduto.VendaProdutoId vendaProdutoId = new VendaProduto.VendaProdutoId();
+            vendaProdutoId.setVenda(venda);
+            vendaProdutoId.setProduto(produto);
+            vendaProduto.setVendaProdutoId(vendaProdutoId);
+            vendaProduto.setQtd(produtoForm.getQuantidade());
+            vendaProduto.setValorUnitario(produto.getValorBase());
+            vendaProduto.setValorTotal(produto.getValorBase().multiply(new BigDecimal(produtoForm.getQuantidade())));
+            venda.getProdutos().add(vendaProduto);
+        });
+        //venda.setProdutos(produtos);
         Venda newVenda = vendaRepository.save(venda);
         return new VendaDto(newVenda);
     }

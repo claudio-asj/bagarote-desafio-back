@@ -27,6 +27,7 @@ public class ProdutoService {
 
         produtos.forEach(produto -> {
             response.add(new ProdutoDto(produto));
+            System.out.println(produto.getProduto());
         });
 
         return response;

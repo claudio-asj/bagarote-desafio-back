@@ -17,7 +17,7 @@ import java.util.List;
 public class EmpresaService {
 
     private final EmpresaRepository empresaRepository;
-    private  final ClienteRepository clienteRepository = null;
+    private  final ClienteRepository clienteRepository;
 
 
     public List<EmpresaDto> listaEmpresas(){

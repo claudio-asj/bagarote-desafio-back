@@ -50,7 +50,7 @@ public class Venda implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private MetodoPagamento metodoPagamento;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "vendaProdutoId.venda")
 	private List<VendaProduto> produtos;
 
 }

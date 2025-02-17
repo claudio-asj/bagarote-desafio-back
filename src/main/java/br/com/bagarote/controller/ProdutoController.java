@@ -1,5 +1,6 @@
 package br.com.bagarote.controller;
 
+import br.com.bagarote.form.ProdutoForm;
 import br.com.bagarote.service.ProdutoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,8 @@ public class ProdutoController {
 	    return ResponseEntity.ok().body(produtoService.getProdutoDetalhe(idProduto));
     }
 	@PostMapping("produto")
-	public ResponseEntity<?> create(@RequestBody Produto createProduto) {
-	    return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(createProduto));
+	public ResponseEntity<?> create(@RequestBody ProdutoForm createProduto) {
+	    return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criarProduto(createProduto));
     }
 	@PutMapping("produto/{idProduto}")
 	public ResponseEntity<?> update(@PathVariable Long idProduto, @RequestBody Produto updateProduto) {

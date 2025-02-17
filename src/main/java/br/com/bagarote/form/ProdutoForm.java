@@ -2,12 +2,14 @@ package br.com.bagarote.form;
 
 import br.com.bagarote.model.Produto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ProdutoForm {
     private String produto;
     private String descricao;
